@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -14,24 +15,44 @@ namespace Business.Concrete
             _carDal = iCarDal;
         }
 
-        public void Add(Car car)
-        {
-            _carDal.Add(car);
-        }
-
-        public void Delete(Car car)
-        {
-            _carDal.Delete(car);
-        }
-
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
         }
 
-        public List<Car> GetById(int carId)
+        public List<Car> GetCarsByBrandId(int id)
         {
-            return _carDal.GetById(carId);
+            return _carDal.GetAll(c => c.BrandId == id);
+        }
+
+        public List<Car> GetCarsByColorId(int id)
+        {
+            return _carDal.GetAll(c => c.ColorId == id);
+        }
+
+        
+        public void Add(Car car)
+        {
+            if (car.Description.Length >= 2)
+            {
+                if ( car.DailyPrice > 0)
+                {
+                    _carDal.Add(car);
+
+                } else
+                {
+                    Console.WriteLine("Araba günlük fiyatı 0'dan büyük olmalıdır.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Araba ismi minimum 2 karakter olmalıdır.");
+            }
+        }
+
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
         }
 
         public void Update(Car car)

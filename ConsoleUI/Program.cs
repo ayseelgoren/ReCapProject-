@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -10,56 +11,62 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
 
-            CarManager carManager = new CarManager(new InMemoryCarDal());
-
-            // GetAll
-            Console.WriteLine("GetAll");
-            foreach (var c in carManager.GetAll())
-            {
-                Console.WriteLine(c.Description);
-            }
-            Console.WriteLine();
-
-
-            // GetById
-            Console.WriteLine("GetById");
-            Car car = new Car() { Id=2, BrandId=3, ColorId=3, DailyPrice=12000, Description= "Volkswagen Polo", ModelYear=2015 };
-            Car carToFound = null;
-            foreach (var c in carManager.GetById(car.Id))
-            {
-                carToFound = c;
-            }
-            Console.WriteLine("Id'si 2 olan araba : " + carToFound.Description);
-            Console.WriteLine();
-
-
-            // Update
-            Console.WriteLine("Update");
-            Console.WriteLine("Önce - "+carToFound.Description);
-            carManager.Update(car);
-            Console.WriteLine("Sonra - "+car.Description);
-            Console.WriteLine();
-
+            CarManager carManager = new CarManager(new EfCarDal());
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            ColorManager colorManager = new ColorManager(new EfColorDal());
 
             // Add
-            Console.WriteLine("Add");
-            Car car2 = new Car() { Id = 6, BrandId = 3, ColorId = 3, DailyPrice = 12000, Description = "Renault Megane", ModelYear = 2015 };
-            carManager.Add(car2);
-            foreach (var c in carManager.GetAll())
+            //Console.WriteLine("Add");
+            //Car car = new Car() { Id=3, BrandId=0, ColorId=2, DailyPrice=12000, Description= "Dacia Duster", ModelYear=2015 };
+            //Car car2 = new Car() { Id = 1, BrandId = 0, ColorId = 1, DailyPrice = 12000, Description = "Renault Megane", ModelYear = 2015 };
+            //carManager.Add(car);
+            // carManager.Add(car2);
+
+
+            // GetAll Color
+            Console.WriteLine("---Renkler---");
+            foreach (var c in colorManager.GetAll())
             {
-                Console.WriteLine(c.Description);
+                Console.WriteLine(c.Name);
+            }
+            Console.WriteLine();
+
+            // GetAll Brand
+            Console.WriteLine("---Markalar---");
+            foreach (var b in brandManager.GetAll())
+            {
+                Console.WriteLine(b.Name);
             }
             Console.WriteLine();
 
 
-            // Delete
-            Console.WriteLine("Delete");
-            carManager.Delete(car);
+
+            // GetAll Car
+            Console.WriteLine("---Arabalar---");
             foreach (var c in carManager.GetAll())
             {
-                Console.WriteLine(c.Description);
+                 Console.WriteLine(c.Description);
             }
             Console.WriteLine();
+
+
+            // GetCarsByBrandId
+            Console.WriteLine("---0 Marka Idli Arabalar---");
+            foreach (var brandIdCar in carManager.GetCarsByBrandId(0))
+            {
+                Console.WriteLine(brandIdCar.Description);
+            }
+            Console.WriteLine();
+
+            // GetCarsByColorId
+            Console.WriteLine("---0 Renk Idli Arabalar---");
+            foreach (var colorIdCar in carManager.GetCarsByColorId(2))
+            {
+                Console.WriteLine(colorIdCar.Description);
+            }
+            Console.WriteLine();
+
+
         }
     }
 }
