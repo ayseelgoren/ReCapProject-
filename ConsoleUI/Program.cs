@@ -15,48 +15,45 @@ namespace ConsoleUI
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
 
-            // Add
-            //Console.WriteLine("Add");
-            //Car car = new Car() { Id=3, BrandId=0, ColorId=2, DailyPrice=12000, Description= "Dacia Duster", ModelYear=2015 };
-            //Car car2 = new Car() { Id = 1, BrandId = 0, ColorId = 1, DailyPrice = 12000, Description = "Renault Megane", ModelYear = 2015 };
-            //carManager.Add(car);
-            // carManager.Add(car2);
 
-
-            // GetAll Color
+            // COLOR
             Console.WriteLine("---Renkler---");
             foreach (var c in colorManager.GetAll())
             {
                 Console.WriteLine(c.Name);
             }
-            Console.WriteLine();
-            // GetById Color
             Console.WriteLine("0 id li renk : " + colorManager.GetById(0).Name);
             Console.WriteLine();
 
-            // GetAll Brand
+
+
+            // BRAND 
             Console.WriteLine("---Markalar---");
+
             foreach (var b in brandManager.GetAll())
             {
                 Console.WriteLine(b.Name);
             }
-            Console.WriteLine();
-            // GetById Brand
             Console.WriteLine("0 id li marka : " + brandManager.GetById(0).Name);
+
             Console.WriteLine();
 
 
 
-            // GetAll Car
+            // CAR
             Console.WriteLine("---Arabalar---");
+
+            //carManager.Add(new Car { Id = 8, BrandId = 1, ColorId = 2, DailyPrice = 100000, Description = "Clio", ModelYear = 2000 });
+            //carManager.Delete(new Car { Id = 8, BrandId = 1, ColorId = 2, DailyPrice = 100000, Description = "Clio", ModelYear = 2000 });
+            //carManager.Add(new Car { Id = 2, BrandId = 1, ColorId = 2, DailyPrice = 100000, Description = "Clio", ModelYear = 2000 });
+            //carManager.Update(new Car { Id = 5, BrandId = 0, ColorId = 0, DailyPrice = 100000, Description = "Dacia Duster", ModelYear = 2000 });
             foreach (var c in carManager.GetAll())
             {
                  Console.WriteLine(c.Description);
             }
-            Console.WriteLine();
-            // GetById Car
             Console.WriteLine("2 id li araba : "+carManager.GetById(2).Description);
             Console.WriteLine();
+
 
 
             // GetCarsByBrandId
@@ -66,6 +63,7 @@ namespace ConsoleUI
                 Console.WriteLine(brandIdCar.Description);
             }
             Console.WriteLine();
+
 
             // GetCarsByColorId
             Console.WriteLine("---0 Renk Idli Arabalar---");
