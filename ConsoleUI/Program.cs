@@ -30,6 +30,9 @@ namespace ConsoleUI
                 Console.WriteLine(c.Name);
             }
             Console.WriteLine();
+            // GetById Color
+            Console.WriteLine("0 id li renk : " + colorManager.GetById(0).Name);
+            Console.WriteLine();
 
             // GetAll Brand
             Console.WriteLine("---Markalar---");
@@ -37,6 +40,9 @@ namespace ConsoleUI
             {
                 Console.WriteLine(b.Name);
             }
+            Console.WriteLine();
+            // GetById Brand
+            Console.WriteLine("0 id li marka : " + brandManager.GetById(0).Name);
             Console.WriteLine();
 
 
@@ -47,6 +53,9 @@ namespace ConsoleUI
             {
                  Console.WriteLine(c.Description);
             }
+            Console.WriteLine();
+            // GetById Car
+            Console.WriteLine("2 id li araba : "+carManager.GetById(2).Description);
             Console.WriteLine();
 
 
@@ -67,6 +76,14 @@ namespace ConsoleUI
             Console.WriteLine();
 
 
+
+
+
+            //CarName, BrandName, ColorName, DailyPrice listelenmesi
+            foreach (var carDetail in carManager.GetCarDetails())
+            {
+                Console.WriteLine(carDetail.CarName+"\t"+ carDetail.BrandName + "\t"+ carDetail.ColorName + "\t"+ carDetail.DailyPrice + "\t");
+            }
         }
     }
 }
