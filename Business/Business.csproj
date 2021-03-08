@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
   </ItemGroup>
 
   <ItemGroup>

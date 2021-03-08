@@ -49,5 +49,11 @@ namespace Business.Constants
         public static string UserGetAll = "Kullanıcılar listelendi.";
         public static string UserRentals = "Kullancının kiraladığı araçlar.";
 
+        public static string CarImageAdded = "Arabaya ait resim eklendi";
+        public static string CarImageDeleted = "Arabaya ait resim silindi.";
+        public static string CarImageUpdated = "Arabaya ait resim güncellendi.";
+        public static string CarImageGetAll = "Arabaya ait tüm resimler.";
+
+        public static string CarImageLimitExceeded = "Arabaya ait resim sınırı.";
     }
 }
