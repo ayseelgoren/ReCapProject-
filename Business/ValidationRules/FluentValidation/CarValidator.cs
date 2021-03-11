@@ -14,7 +14,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.Description).NotEmpty();
             RuleFor(c => c.DailyPrice).GreaterThan(0);
             RuleFor(c => c.ModelYear).GreaterThanOrEqualTo(2020).When(c => c.BrandId == 1);
-            RuleFor(c => c.Description).Must(StartWithA).WithMessage("Araçlar A harfi ile başlamalı.");
+           //RuleFor(c => c.Description).Must(StartWithA).WithMessage("Araçlar A harfi ile başlamalı.");
         }
 
         private bool StartWithA(string arg)
