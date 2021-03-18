@@ -25,8 +25,8 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
-        [SecuredOperation("CarImage.Add,Admin")]
-        [ValidationAspect(typeof(CarImageValidator))]
+      //  [SecuredOperation("CarImage.Add,Admin")]
+        //[ValidationAspect(typeof(CarImageValidator))]
         [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Add(IFormFile file, CarImage carImage)
         {
@@ -36,7 +36,7 @@ namespace Business.Concrete
                 return result;
             }
 
-            carImage.ImagePath = FileHelper.Add(file);
+            carImage.ImagePath = FileHelper.Add(file).Message;
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.CarImageAdded);
@@ -63,7 +63,9 @@ namespace Business.Concrete
             {
                 return result;
             }
-            carImage.ImagePath = FileHelper.Update(_carImageDal.Get(p => p.Id == carImage.Id).ImagePath, file);
+            var resultCarImage = _carImageDal.Get(p => p.Id == carImage.Id);
+            var resultFile= FileHelper.Update(file, resultCarImage.ImagePath);
+            carImage.ImagePath = resultFile.Message;
             carImage.Date = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult(Messages.CarImageUpdated);
@@ -113,7 +115,7 @@ namespace Business.Concrete
         {
             try
             {
-                string path = Environment.CurrentDirectory + @"\images\defaultImage.jpg";
+                string path = Environment.CurrentDirectory + @"\Images\defaultImage.jpg";
                 var result = _carImageDal.GetAll(c => c.CarId == id).Any();
                 if (!result)
                 {

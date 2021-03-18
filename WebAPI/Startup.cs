@@ -38,11 +38,12 @@ namespace WebAPI
         {
             services.AddControllers();
 
-            services.AddCors(options =>
+            services.AddCors();
+            /*services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
                     builder => builder.WithOrigins("https://localhost:44362"));
-            });
+            });*/
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -74,11 +75,13 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins("https://localhost:44362").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             app.UseAuthentication();
 
