@@ -39,5 +39,13 @@ namespace DataAccess.Concrete.EntityFramework
                 }
             
         }
+
+        public Rental LastRentalCar()
+        {
+            using (RentACarContext context = new RentACarContext())
+            {
+                return context.Rentals.OrderByDescending(u => u.Id).FirstOrDefault();
+            }
+        }
     }
 }

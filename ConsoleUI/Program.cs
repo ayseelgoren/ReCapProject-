@@ -66,18 +66,18 @@ namespace ConsoleUI
 
             // GetCarsByBrandId
             Console.WriteLine("---0 Marka Idli Arabalar---");
-            foreach (var brandIdCar in carManager.GetCarsByBrandId(0).Data)
+            foreach (var brandIdCar in carManager.GetCarsByBrand(0).Data)
             {
-                Console.WriteLine(brandIdCar.Description);
+                Console.WriteLine(brandIdCar.CarName);
             }
             Console.WriteLine();
 
 
             // GetCarsByColorId
             Console.WriteLine("---0 Renk Idli Arabalar---");
-            foreach (var colorIdCar in carManager.GetCarsByColorId(2).Data)
+            foreach (var colorIdCar in carManager.GetCarsByColor(2).Data)
             {
-                Console.WriteLine(colorIdCar.Description);
+                Console.WriteLine(colorIdCar.CarName);
             }
             Console.WriteLine();
             //CarName, BrandName, ColorName, DailyPrice listelenmesi

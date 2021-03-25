@@ -120,7 +120,9 @@ namespace Business.Concrete
                 if (!result)
                 {
                     List<CarImage> carimage = new List<CarImage>();
-                    carimage.Add(new CarImage { CarId = id, ImagePath = path, Date = DateTime.Now });
+                    CarImage newImage = new CarImage { CarId = id, ImagePath = "defaultImage.jpg", Date = DateTime.Now };
+                    carimage.Add(newImage);
+                    _carImageDal.Add(newImage);
                     return new SuccessDataResult<List<CarImage>>(carimage);
                 }
             }

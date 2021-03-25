@@ -87,6 +87,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("lastrentalcar")]
+        public IActionResult LastRentalCar()
+        {
+            var result = _rentalService.LastRentalCar();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpGet("getallrentaldetail")]
         public IActionResult GetAllRentalDetail()

@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -7,11 +8,10 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IRentalDal : IEntityRepository<Rental>
+    public interface ICreditCardDal : IEntityRepository<CreditCard>
     {
 
-        List<RentalDetailDto> GetAllRentalDetail();
-
-        Rental LastRentalCar();
+        IResult Buy(BuyDetailDto buyDto);
+        bool Refund(BuyDetailDto buyDto);
     }
 }
