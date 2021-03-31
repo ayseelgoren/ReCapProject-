@@ -11,11 +11,13 @@ namespace Business.Abstract
     {
 
         IDataResult<List<CreditCard>> GetAll();
+        IDataResult<List<CreditCard>> GetByUserId(int userId);
+        IDataResult<CreditCard> GetById(int id);
+
+        
         IResult Add(CreditCard creditCard);
         IResult Delete(CreditCard creditCard);
         IResult Update(CreditCard creditCard);
 
-        IResult Buy(BuyDetailDto buyDto);
-        IResult Refund(BuyDetailDto buyDto);
     }
 }

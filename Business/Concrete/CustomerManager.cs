@@ -23,7 +23,7 @@ namespace Business.Concrete
             _customerDal = customerDal;
         }
 
-        [SecuredOperation("Customer.Add,Admin")]
+        //[SecuredOperation("Customer.Add,Admin")]
         [ValidationAspect(typeof(CustomerValidator))]
         [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Add(Customer customer)
@@ -40,7 +40,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CustomerDeleted);
         }
 
-        [SecuredOperation("Customer.Update,Admin")]
+        //[SecuredOperation("Customer.Update,Admin")]
         [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Update(Customer customer)
         {
@@ -57,9 +57,13 @@ namespace Business.Concrete
         [CacheAspect(duration:10)] //key,value
         public IDataResult<Customer> GetById(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.UserId == id));
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id));
         }
-
+        [CacheAspect(duration: 10)] //key,value
+        public IDataResult<Customer> GetByUserId(int userId)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.UserId == userId));
+        }
         public IDataResult<List<CustomerDetailDto>> GetAllCustomerDetail()
         {
             return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetAllCustomerDetail());

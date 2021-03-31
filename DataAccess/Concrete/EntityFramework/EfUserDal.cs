@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Core.Utilities.Results;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -26,5 +28,25 @@ namespace DataAccess.Concrete.EntityFramework
 
             }
         }
+
+        public IResult AddUserAsCustomer()
+        {
+            using (RentACarContext context = new RentACarContext())
+            {
+
+                var resultUser = context.Users.OrderByDescending(u => u.Id).FirstOrDefault();
+
+                if (resultUser.Id != -1)
+                {
+                    Customer customer = new Customer() { UserId = resultUser.Id, FindexPoint = 1900, CompanyName = resultUser.FirstName +" "+ resultUser.LastName };
+                    context.Customers.Add(customer);
+                    context.SaveChanges();
+                    return new SuccessResult();
+                }
+
+                return new ErrorResult();
+            } 
+        }
+
     }
 }

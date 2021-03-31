@@ -65,5 +65,17 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Başarılı giriş";
         public static string UserAlreadyExists = "Kullanıcı mevcut";
         public static string AccessTokenCreated = "Token oluşturuldu";
+
+        public static string NotCustomerFindexPoint= "Müşteri findeks puanı 0-1900 arasında olmalıdır.";
+
+        public static string CustomerScoreIsInsufficient = "Müşteri findeks puanı yetersiz.";
+
+        public static string RentalControlSucces = "Belirtilen tarihler arası kiralama için uygundur.";
+        public static string RentalControlError = "Belirtilen tarihler arası araç başkası tarafından kiralanmıştır.";
+
+        public static string ThereIsACreditCard = "Kredi kartı bilgileri sistemde bulunmaktadır.";
+
+        public static string AddUserAsCustomerError = "Kullanıcı başarıı ile müşteri olarak eklendi.";
+        public static string AddUserAsCustomerSuccess = "Kullanıcı müşteri olarak eklenemedi.";
     }
 }

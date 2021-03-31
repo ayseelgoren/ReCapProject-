@@ -31,7 +31,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = car.DailyPrice,
                                  ModelYear = car.ModelYear,
                                  BrandId = brand.Id,
-                                 ColorId = color.Id
+                                 ColorId = color.Id,
+                                 FindexPoint=car.FindexPoint
                              };
                 return result.Where(c => c.BrandId == id).ToList();
             }
@@ -55,7 +56,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = car.DailyPrice,
                                  ModelYear = car.ModelYear,
                                  BrandId = brand.Id,
-                                 ColorId = color.Id
+                                 ColorId = color.Id,
+                                 FindexPoint = car.FindexPoint
                              };
                 return result.Where(c => c.ColorId == id).ToList();
             }
@@ -79,7 +81,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = car.DailyPrice,
                                  ModelYear = car.ModelYear,
                                  BrandId = brand.Id,
-                                 ColorId = color.Id
+                                 ColorId = color.Id,
+                                 FindexPoint = car.FindexPoint
                              };
                 return result.ToList();
             }

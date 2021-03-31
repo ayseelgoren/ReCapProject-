@@ -7,6 +7,7 @@ namespace Entities.DTOs
 {
     public class BuyDetailDto : IDto
     {
+        public string Name { get; set; }
         public long Amount { get; set; }
         public string CreditCardNumber { get; set; }
         public string SecurityNumber { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -13,5 +14,9 @@ namespace DataAccess.Abstract
         List<RentalDetailDto> GetAllRentalDetail();
 
         Rental LastRentalCar();
+
+        int RentalControl(Rental rental);
+
+        List<RentalDetailDto> UserRentedCars(int id);
     }
 }

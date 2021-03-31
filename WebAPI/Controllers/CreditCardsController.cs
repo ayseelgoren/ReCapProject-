@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,28 +20,39 @@ namespace WebAPI.Controllers
             _creditCardService = creditCardService;
         }
 
-
-        [HttpPost("buy")]
-        public IActionResult Buy(BuyDetailDto buyDto)
+        [HttpPost("add")]
+        public IActionResult Add(CreditCard creditCard)
         {
-            var result = _creditCardService.Buy(buyDto);
+            var result = _creditCardService.Add(creditCard);
             if (result.Success)
             {
                 return Ok(result);
             }
-
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
-        [HttpPost("refund")]
-        public IActionResult Refund(BuyDetailDto buyDto)
+        [HttpGet("getbyuserid")]
+        public IActionResult GetByCustomerId(int userId)
         {
-            var result = _creditCardService.Refund(buyDto);
+            var result = _creditCardService.GetByUserId(userId);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _creditCardService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        
     }
 }

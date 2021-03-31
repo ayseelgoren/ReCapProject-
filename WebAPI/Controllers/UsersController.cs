@@ -72,5 +72,17 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+
+        [HttpGet("adduserascustomer")]
+        public IActionResult AddUserAsCustomer()
+        {
+            var result = _userService.AddUserAsCustomer();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

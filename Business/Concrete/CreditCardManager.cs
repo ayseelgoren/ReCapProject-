@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
@@ -26,10 +27,28 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll());
         }
 
+        public IDataResult<List<CreditCard>> GetByUserId(int userId)
+        {
+            return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll(c=>c.UserId == userId));
+        }
+
+        public IDataResult<CreditCard> GetById(int id)
+        {
+            return new SuccessDataResult<CreditCard>(_creditCardDal.Get(c => c.Id == id));
+        }
+
         [ValidationAspect(typeof(CreditCardValidator))]
         public IResult Add(CreditCard creditCard)
         {
-            _creditCardDal.Add(creditCard);
+            var result = _creditCardDal.GetAll(c=>c.CardNumber == creditCard.CardNumber && c.UserId == creditCard.UserId).Count;
+            if (result > 0)
+            {
+                return new ErrorResult(Messages.ThereIsACreditCard);
+            }
+            else
+            {
+                _creditCardDal.Add(creditCard);
+            }
             return new SuccessResult();
         }
 
@@ -45,23 +64,6 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult Buy(BuyDetailDto buyDto)
-        {
-            var result = _creditCardDal.Buy(buyDto);
-            if (result.Success)
-            {
-                return new SuccessResult();
-            }
-            else
-            {
-                return new ErrorResult(result.Message);
-            }
-        }
-        public IResult Refund(BuyDetailDto buyDto)
-        {
-
-            _creditCardDal.Refund(buyDto);
-            return new SuccessResult();
-        }
+      
     }
 }

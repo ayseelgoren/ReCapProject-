@@ -14,7 +14,6 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
-
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
@@ -58,5 +57,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
 
+        public IResult AddUserAsCustomer()
+        {
+            _userDal.AddUserAsCustomer();
+           return new SuccessResult();
+          
+        }
     }
 }

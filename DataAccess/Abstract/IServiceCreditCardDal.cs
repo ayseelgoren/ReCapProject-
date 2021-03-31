@@ -8,8 +8,10 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface ICreditCardDal : IEntityRepository<CreditCard>
+    public interface IServiceCreditCardDal : IEntityRepository<ServiceCreditCard>
     {
 
+        IResult Buy(BuyDetailDto buyDto);
+        bool Refund(BuyDetailDto buyDto);
     }
 }

@@ -25,7 +25,7 @@ namespace ConsoleUI
 
         private static void RentalTest()
         {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            /*RentalManager rentalManager = new RentalManager(new EfRentalDal(),new EfCustomerDal(),new EfCarDal());
 
             var result = rentalManager.GetAllRentalDetail();
             if (result.Success == true)
@@ -41,7 +41,7 @@ namespace ConsoleUI
             else
             {
                 Console.WriteLine(result.Message);
-            }
+            }*/
         }
 
             private static void CarTest()

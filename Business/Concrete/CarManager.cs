@@ -26,7 +26,6 @@ namespace Business.Concrete
             _carDal = iCarDal;
         }
 
-        //[SecuredOperation("Admin")]
         [CacheAspect] //key,value
         public IDataResult<List<Car>> GetAll()
         {
@@ -80,7 +79,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
         }
 
-        [SecuredOperation("Car.Update,Admin")]
+        //[SecuredOperation("Car.Update,Admin")]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {

@@ -21,13 +21,17 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public IActionResult Add(Rental rental)
         {
-            var result = _rentalService.Add(rental);
-            if (result.Success)
+            var resultControl = _rentalService.RentalControl(rental);
+            if (resultControl.Success)
             {
-                return Ok(result);
+                var result = _rentalService.Add(rental);
+                if (result.Success)
+                {
+                    return Ok(result);
+                }
             }
 
-            return BadRequest(result);
+            return BadRequest(resultControl);
         }
 
         [HttpPost("update")]
@@ -102,6 +106,28 @@ namespace WebAPI.Controllers
         public IActionResult GetAllRentalDetail()
         {
             var result = _rentalService.GetAllRentalDetail();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("userrentalcars")]
+        public IActionResult UserRentedCars(int id)
+        {
+            var result = _rentalService.UserRentedCars(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("rentalcontrol")]
+        public IActionResult RentalControl(Rental rental)
+        {
+            var result = _rentalService.RentalControl(rental);
             if (result.Success)
             {
                 return Ok(result);
