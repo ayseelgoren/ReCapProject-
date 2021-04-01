@@ -115,12 +115,12 @@ namespace Business.Concrete
         {
             try
             {
-                string path = Environment.CurrentDirectory + @"\Images\defaultImage.jpg";
+                string path = Environment.CurrentDirectory + @"\Images\default-car.png";
                 var result = _carImageDal.GetAll(c => c.CarId == id).Any();
                 if (!result)
                 {
                     List<CarImage> carimage = new List<CarImage>();
-                    CarImage newImage = new CarImage { CarId = id, ImagePath = "defaultImage.jpg", Date = DateTime.Now };
+                    CarImage newImage = new CarImage { CarId = id, ImagePath = "default-car.png", Date = DateTime.Now };
                     carimage.Add(newImage);
                     _carImageDal.Add(newImage);
                     return new SuccessDataResult<List<CarImage>>(carimage);
